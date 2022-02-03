@@ -1,7 +1,4 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Negociacao = void 0;
-class Negociacao {
+export class Negociacao {
     constructor(_data, _quantidade, _valor) {
         this.data = _data,
             this.quantidade = _quantidade;
@@ -11,11 +8,10 @@ class Negociacao {
     get Data() {
         return this.data;
     }
-    get Quatidade() {
+    get Quantidade() {
         return this.quantidade;
     }
     get Valor() {
         return this.valor;
     }
 }
-exports.Negociacao = Negociacao;

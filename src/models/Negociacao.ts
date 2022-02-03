@@ -14,7 +14,7 @@ export class Negociacao {
     return this.data
   }
   
-  public get Quatidade(): number {
+  public get Quantidade(): number {
     return this.quantidade
   }
   
