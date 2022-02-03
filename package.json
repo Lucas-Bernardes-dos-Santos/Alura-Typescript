@@ -1,0 +1,18 @@
+{
+  "devDependencies": {
+    "typescript": "^4.5.5",
+    "concurrently": "^6.0.0",
+    "lite-server": "^2.6.1"
+  },
+  "name": "alura---typescript",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "server": "lite-server --baseDir=dist",
+    "start": "concurrently \"npm run watch\" \"npm run server\""
+  },
+  "author": "Lucas Bernardes dos Santos",
+  "license": "ISC",
+  "description": ""
+}
