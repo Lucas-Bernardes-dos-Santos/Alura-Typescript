@@ -1,14 +1,9 @@
 export class Negociacao {
 
-  private data
-  private quantidade
-  private valor
-
-  constructor(_data: Date, _quantidade: number, _valor: number) {
-    this.data = _data,
-    this.quantidade = _quantidade
-    this.valor = _valor
-  }
+  constructor(
+    private data: Date,
+    private quantidade: number,
+    private valor: number) {}
 
   //#region Getters e Setters
   public get Data(): Date {

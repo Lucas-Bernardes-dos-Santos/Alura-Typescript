@@ -1,8 +1,8 @@
 export class Negociacao {
-    constructor(_data, _quantidade, _valor) {
-        this.data = _data,
-            this.quantidade = _quantidade;
-        this.valor = _valor;
+    constructor(data, quantidade, valor) {
+        this.data = data;
+        this.quantidade = quantidade;
+        this.valor = valor;
     }
     //#region Getters e Setters
     get Data() {

@@ -1,3 +1,4 @@
+import { ListaNegociacoes } from "../models/ListaNegociacoes.js"
 import { Negociacao } from "../models/Negociacao.js"
 
 export class NegociacaoControl {
@@ -5,6 +6,7 @@ export class NegociacaoControl {
   private inputData: HTMLInputElement
   private inputQuantidade: HTMLInputElement
   private inputValor: HTMLInputElement
+  private listaNegociacoes = new ListaNegociacoes()
 
   constructor() {
     this.inputData = document.querySelector('#data')!
@@ -15,7 +17,7 @@ export class NegociacaoControl {
   adicionar(): void {
     const negociacao = this.criarNegociacao()
 
-    console.log(negociacao)
+    this.listaNegociacoes.adicionar(negociacao)
 
     this.limparFormulario()
   }
