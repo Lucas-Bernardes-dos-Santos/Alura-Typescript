@@ -4,9 +4,14 @@ export class Negociacao {
         this.quantidade = quantidade;
         this.valor = valor;
     }
+    //#region Métodos
+    volume() {
+        return this.quantidade * this.valor;
+    }
+    //#endregion
     //#region Getters e Setters
     get Data() {
-        return this.data;
+        return new Date(this.data.getTime());
     }
     get Quantidade() {
         return this.quantidade;
