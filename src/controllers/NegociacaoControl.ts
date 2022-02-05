@@ -1,6 +1,7 @@
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js"
 import { Negociacao } from "../models/Negociacao.js"
-import { NegociacoesView } from "../views/NegociacoesView.js"
+import { MensagemView } from "../views/mensagemView.js"
+import { NegociacoesView } from "../views/negociacoesView.js"
 
 export class NegociacaoControl {
   
@@ -11,6 +12,7 @@ export class NegociacaoControl {
 
   private listaNegociacoes = new ListaNegociacoes()
   private negociacoesView = new NegociacoesView('#negociacoesView')
+  private mensagemView = new MensagemView('#mensagemView')
   //#endregion
 
   constructor() {
@@ -26,6 +28,7 @@ export class NegociacaoControl {
 
     this.listaNegociacoes.adicionar(negociacao)
     this.negociacoesView.update(this.listaNegociacoes)
+    this.mensagemView.update('Negociação realizada com sucesso.')
 
     this.limparFormulario()
   }
