@@ -30,9 +30,4 @@ export class NegociacoesView extends View<ListaNegociacoes> {
       </table>
     `
   }
-
-  update(_listaNegociacoes: ListaNegociacoes): void {
-    const template = this.template(_listaNegociacoes)
-    this.elemento.innerHTML = template
-  }
 }
