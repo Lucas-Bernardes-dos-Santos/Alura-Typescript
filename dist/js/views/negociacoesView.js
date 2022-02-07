@@ -4,7 +4,7 @@ export class NegociacoesView extends View {
         return `
       <table class="table table-hover tabler-bordered">
         <thead>
-          <tr>
+          <tr>  
             <th>Data</th>
             <th>Quantidade</th>
             <th>Preço</th>
@@ -15,7 +15,7 @@ export class NegociacoesView extends View {
           ${_listaNegociacoes.listar().map(negociacao => {
             return `
               <tr>
-                <td>${negociacao.Data.getDate()}/${negociacao.Data.getMonth() + 1}/${negociacao.Data.getFullYear()}</td>
+                <td>${negociacao.dataFormatada()}</td>
                 <td>${negociacao.Quantidade}</td>
                 <td>${negociacao.Valor}</td>
               </tr>

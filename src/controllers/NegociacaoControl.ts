@@ -23,29 +23,27 @@ export class NegociacaoControl {
     this.negociacoesView.update(this.listaNegociacoes)
   }
 
-  adicionar(): void {
-    const negociacao = this.criarNegociacao()
 
-    this.listaNegociacoes.adicionar(negociacao)
-    this.negociacoesView.update(this.listaNegociacoes)
-    this.mensagemView.update('Negociação realizada com sucesso.')
+  public adicionar(): void {
 
-    this.limparFormulario()
-  }
-
-  criarNegociacao(): Negociacao {
-
-    let data = this.inputData.value.split('-')
-    let date = new Date(`${data[1]}/${data[2]}/${data[0]}`)
-    
-    return new Negociacao(
-      date,
-      this.inputQuantidade.valueAsNumber,
-      this.inputValor.valueAsNumber 
+    const negociacao = Negociacao.criarInstancia(
+      this.inputData.value,
+      this.inputQuantidade.value,
+      this.inputValor.value
     )
+
+    if(Negociacao.verificarDiaUtil(negociacao.Data)) { 
+      this.listaNegociacoes.adicionar(negociacao)
+      this.negociacoesView.update(this.listaNegociacoes)
+      this.mensagemView.update('Negociação realizada com sucesso.')
+
+      this.limparFormulario()
+    } else {
+      this.mensagemView.update('Negociações só podem ser realizadas em dias úteis.')
+    }
   }
 
-  limparFormulario(): void {
+  private limparFormulario(): void {
     this.inputData.value = ''
     this.inputQuantidade.value = ''
     this.inputValor.value = ''
