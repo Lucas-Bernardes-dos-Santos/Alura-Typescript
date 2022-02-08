@@ -11,7 +11,7 @@ export class NegociacaoControl {
   private inputValor: HTMLInputElement
 
   private listaNegociacoes = new ListaNegociacoes()
-  private negociacoesView = new NegociacoesView('#negociacoesView')
+  private negociacoesView = new NegociacoesView('#negociacoesView', true)
   private mensagemView = new MensagemView('#mensagemView')
   //#endregion
 
@@ -22,7 +22,6 @@ export class NegociacaoControl {
     
     this.negociacoesView.update(this.listaNegociacoes)
   }
-
 
   public adicionar(): void {
 
