@@ -20,7 +20,6 @@ export class Negociacao {
     dataFormatada() {
         return `${this.Data.getDate()}/${this.Data.getMonth() + 1}/${this.Data.getFullYear()}`;
     }
-    //#region Getters e Setters
     get Data() {
         return new Date(this.data.getTime());
     }

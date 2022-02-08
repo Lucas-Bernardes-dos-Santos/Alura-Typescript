@@ -3,7 +3,6 @@ import { Negociacao } from "../models/Negociacao.js";
 import { MensagemView } from "../views/mensagemView.js";
 import { NegociacoesView } from "../views/negociacoesView.js";
 export class NegociacaoControl {
-    //#endregion
     constructor() {
         this.listaNegociacoes = new ListaNegociacoes();
         this.negociacoesView = new NegociacoesView('#negociacoesView', true);

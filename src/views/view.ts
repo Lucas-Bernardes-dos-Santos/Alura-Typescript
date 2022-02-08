@@ -4,7 +4,15 @@ export abstract class View<T> {
   private escape = false
 
   constructor(_seletor: string, _escape?: boolean) {
-    this.elemento = document.querySelector(_seletor)!
+    const elemento = document.querySelector(_seletor)
+
+    if(elemento) {
+      this.elemento = elemento as HTMLElement
+    } 
+    else {
+      throw Error(`Seletor ${_seletor} não existe no documento.`)
+    }
+    
     if(_escape)
       this.escape = _escape
   }
