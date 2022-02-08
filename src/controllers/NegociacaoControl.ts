@@ -1,3 +1,4 @@
+import { tempoExecucao } from "../decorators/tempo-execucao.js"
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js"
 import { Negociacao } from "../models/Negociacao.js"
 import { MensagemView } from "../views/mensagemView.js"
@@ -23,6 +24,7 @@ export class NegociacaoControl {
     this.negociacoesView.update(this.listaNegociacoes)
   }
 
+  @tempoExecucao()
   public adicionar(): void {
 
     const negociacao = Negociacao.criarInstancia(
