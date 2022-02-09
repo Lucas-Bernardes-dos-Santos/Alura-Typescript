@@ -4,6 +4,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+import { inspecionar } from "../decorators/inspecionar.js";
 import { tempoExecucao } from "../decorators/tempo-execucao.js";
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js";
 import { Negociacao } from "../models/Negociacao.js";
@@ -12,7 +13,7 @@ import { NegociacoesView } from "../views/negociacoesView.js";
 export class NegociacaoControl {
     constructor() {
         this.listaNegociacoes = new ListaNegociacoes();
-        this.negociacoesView = new NegociacoesView('#negociacoesView', true);
+        this.negociacoesView = new NegociacoesView('#negociacoesView');
         this.mensagemView = new MensagemView('#mensagemView');
         this.inputData = document.querySelector('#data');
         this.inputQuantidade = document.querySelector('#quantidade');
@@ -39,5 +40,6 @@ export class NegociacaoControl {
     }
 }
 __decorate([
+    inspecionar,
     tempoExecucao()
 ], NegociacaoControl.prototype, "adicionar", null);

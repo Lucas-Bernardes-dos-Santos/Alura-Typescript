@@ -1,3 +1,4 @@
+import { inspecionar } from "../decorators/inspecionar.js"
 import { tempoExecucao } from "../decorators/tempo-execucao.js"
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js"
 import { Negociacao } from "../models/Negociacao.js"
@@ -12,7 +13,7 @@ export class NegociacaoControl {
   private inputValor: HTMLInputElement
 
   private listaNegociacoes = new ListaNegociacoes()
-  private negociacoesView = new NegociacoesView('#negociacoesView', true)
+  private negociacoesView = new NegociacoesView('#negociacoesView')
   private mensagemView = new MensagemView('#mensagemView')
   //#endregion
 
@@ -24,6 +25,7 @@ export class NegociacaoControl {
     this.negociacoesView.update(this.listaNegociacoes)
   }
 
+  @inspecionar
   @tempoExecucao()
   public adicionar(): void {
 
