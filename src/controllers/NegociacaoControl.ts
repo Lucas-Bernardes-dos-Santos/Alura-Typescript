@@ -2,6 +2,7 @@ import { inspecionar } from "../decorators/inspecionar.js"
 import { tempoExecucao } from "../decorators/tempo-execucao.js"
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js"
 import { Negociacao } from "../models/Negociacao.js"
+import { NegociacaoService } from "../service/negociacoesService.js"
 import { MensagemView } from "../views/mensagemView.js"
 import { NegociacoesView } from "../views/negociacoesView.js"
 
@@ -15,6 +16,7 @@ export class NegociacaoControl {
   private listaNegociacoes = new ListaNegociacoes()
   private negociacoesView = new NegociacoesView('#negociacoesView')
   private mensagemView = new MensagemView('#mensagemView')
+  private negociacoesService = new NegociacaoService()
   //#endregion
 
   constructor() {
@@ -46,25 +48,16 @@ export class NegociacaoControl {
     }
   }
 
+  @tempoExecucao()
   public importarDados(): void {
-    fetch('http://localhost:8080/dados')
-      .then(res => res.json()) // Recebendo os dados da API e convertendo para JSON, já que nós sabemos que o retorno é JSON
-
-      .then((dados: Array<any>) => { // Não sei quais tipos de dados vão vir do Back-end, porém sei que vai ser um array
-        return dados.map(dadosAtuais => { // Convertendo os dados para uma nova negociação
-          return new Negociacao(
-            new Date(), 
-            dadosAtuais.vezes, 
-            dadosAtuais.montante)
-        })
-      })
-      
-      .then(negociacoesDeHoje => { // Adicionando essa nova negociação na lista de Negociações
-        for(let negociacao of negociacoesDeHoje) {
-          this.listaNegociacoes.adicionar(negociacao)
-        }
-        this.negociacoesView.update(this.listaNegociacoes)
-      })
+    
+    this.negociacoesService.obterNegociacoesDoDia()
+    .then(_negociacoesDoDia => { // Adicionando essa nova negociação na lista de Negociações
+      for(let negociacao of _negociacoesDoDia) {
+        this.listaNegociacoes.adicionar(negociacao)
+      }
+      this.negociacoesView.update(this.listaNegociacoes)
+    })
   }
 
   private limparFormulario(): void {

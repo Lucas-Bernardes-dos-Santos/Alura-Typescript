@@ -8,6 +8,7 @@ import { inspecionar } from "../decorators/inspecionar.js";
 import { tempoExecucao } from "../decorators/tempo-execucao.js";
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js";
 import { Negociacao } from "../models/Negociacao.js";
+import { NegociacaoService } from "../service/negociacoesService.js";
 import { MensagemView } from "../views/mensagemView.js";
 import { NegociacoesView } from "../views/negociacoesView.js";
 export class NegociacaoControl {
@@ -15,6 +16,7 @@ export class NegociacaoControl {
         this.listaNegociacoes = new ListaNegociacoes();
         this.negociacoesView = new NegociacoesView('#negociacoesView');
         this.mensagemView = new MensagemView('#mensagemView');
+        this.negociacoesService = new NegociacaoService();
         this.inputData = document.querySelector('#data');
         this.inputQuantidade = document.querySelector('#quantidade');
         this.inputValor = document.querySelector('#valor');
@@ -33,15 +35,9 @@ export class NegociacaoControl {
         }
     }
     importarDados() {
-        fetch('http://localhost:8080/dados')
-            .then(res => res.json())
-            .then((dados) => {
-            return dados.map(dadosAtuais => {
-                return new Negociacao(new Date(), dadosAtuais.vezes, dadosAtuais.montante);
-            });
-        })
-            .then(negociacoesDeHoje => {
-            for (let negociacao of negociacoesDeHoje) {
+        this.negociacoesService.obterNegociacoesDoDia()
+            .then(_negociacoesDoDia => {
+            for (let negociacao of _negociacoesDoDia) {
                 this.listaNegociacoes.adicionar(negociacao);
             }
             this.negociacoesView.update(this.listaNegociacoes);
@@ -58,3 +54,6 @@ __decorate([
     inspecionar,
     tempoExecucao()
 ], NegociacaoControl.prototype, "adicionar", null);
+__decorate([
+    tempoExecucao()
+], NegociacaoControl.prototype, "importarDados", null);
