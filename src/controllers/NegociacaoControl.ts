@@ -46,6 +46,27 @@ export class NegociacaoControl {
     }
   }
 
+  public importarDados(): void {
+    fetch('http://localhost:8080/dados')
+      .then(res => res.json()) // Recebendo os dados da API e convertendo para JSON, já que nós sabemos que o retorno é JSON
+
+      .then((dados: Array<any>) => { // Não sei quais tipos de dados vão vir do Back-end, porém sei que vai ser um array
+        return dados.map(dadosAtuais => { // Convertendo os dados para uma nova negociação
+          return new Negociacao(
+            new Date(), 
+            dadosAtuais.vezes, 
+            dadosAtuais.montante)
+        })
+      })
+      
+      .then(negociacoesDeHoje => { // Adicionando essa nova negociação na lista de Negociações
+        for(let negociacao of negociacoesDeHoje) {
+          this.listaNegociacoes.adicionar(negociacao)
+        }
+        this.negociacoesView.update(this.listaNegociacoes)
+      })
+  }
+
   private limparFormulario(): void {
     this.inputData.value = ''
     this.inputQuantidade.value = ''

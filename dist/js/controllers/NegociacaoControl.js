@@ -32,6 +32,21 @@ export class NegociacaoControl {
             this.mensagemView.update('Negociações só podem ser realizadas em dias úteis.');
         }
     }
+    importarDados() {
+        fetch('http://localhost:8080/dados')
+            .then(res => res.json())
+            .then((dados) => {
+            return dados.map(dadosAtuais => {
+                return new Negociacao(new Date(), dadosAtuais.vezes, dadosAtuais.montante);
+            });
+        })
+            .then(negociacoesDeHoje => {
+            for (let negociacao of negociacoesDeHoje) {
+                this.listaNegociacoes.adicionar(negociacao);
+            }
+            this.negociacoesView.update(this.listaNegociacoes);
+        });
+    }
     limparFormulario() {
         this.inputData.value = '';
         this.inputQuantidade.value = '';
