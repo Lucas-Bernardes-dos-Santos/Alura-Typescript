@@ -32,6 +32,14 @@ export class Negociacao {
     return `${this.Data.getDate()}/${this.Data.getMonth() + 1}/${this.Data.getFullYear()}`
   }
 
+  public toString(): void {
+    console.log(`
+      Data: ${this.dataFormatada()}
+      Quantidade: ${this.Quantidade}
+      Valor: ${this.Valor}
+    `)
+  }
+
   //#region Getters e Setters
   public get Data(): Date {
     return new Date(this.data.getTime())

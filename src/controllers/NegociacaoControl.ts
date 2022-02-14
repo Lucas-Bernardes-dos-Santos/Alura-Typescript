@@ -40,6 +40,7 @@ export class NegociacaoControl {
     if(Negociacao.verificarDiaUtil(negociacao.Data)) { 
       this.listaNegociacoes.adicionar(negociacao)
       this.negociacoesView.update(this.listaNegociacoes)
+      negociacao.toString()
       this.mensagemView.update('Negociação realizada com sucesso.')
 
       this.limparFormulario()

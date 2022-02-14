@@ -20,6 +20,13 @@ export class Negociacao {
     dataFormatada() {
         return `${this.Data.getDate()}/${this.Data.getMonth() + 1}/${this.Data.getFullYear()}`;
     }
+    toString() {
+        console.log(`
+      Data: ${this.dataFormatada()}
+      Quantidade: ${this.Quantidade}
+      Valor: ${this.Valor}
+    `);
+    }
     get Data() {
         return new Date(this.data.getTime());
     }
