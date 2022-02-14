@@ -1,6 +1,3 @@
-import { inspecionar } from "../decorators/inspecionar.js"
-import { tempoExecucao } from "../decorators/tempo-execucao.js"
-
 export abstract class View<T> {
 
   protected elemento: HTMLElement
@@ -18,8 +15,6 @@ export abstract class View<T> {
 
   protected abstract template(_modelo: T): string 
 
-  @inspecionar
-  @tempoExecucao(true)  
   update(_modelo: T): void {
     let template = this.template(_modelo)
     this.elemento.innerHTML = template

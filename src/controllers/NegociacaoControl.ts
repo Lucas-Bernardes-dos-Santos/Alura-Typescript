@@ -1,4 +1,4 @@
-import { inspecionar } from "../decorators/inspecionar.js"
+//import { inspecionar } from "../decorators/inspecionar.js"
 import { tempoExecucao } from "../decorators/tempo-execucao.js"
 import { ListaNegociacoes } from "../models/ListaNegociacoes.js"
 import { Negociacao } from "../models/Negociacao.js"
@@ -27,8 +27,6 @@ export class NegociacaoControl {
     this.negociacoesView.update(this.listaNegociacoes)
   }
 
-  @inspecionar
-  @tempoExecucao()
   public adicionar(): void {
 
     const negociacao = Negociacao.criarInstancia(
